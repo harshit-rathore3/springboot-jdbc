@@ -1,0 +1,58 @@
+public class BankAccount {
+
+    private String accountHolderName;
+    private String accountNumber;
+    private double balance;
+
+    // Constructor
+    public BankAccount(String accountHolderName, String accountNumber, double initialBalance) {
+        this.accountHolderName = accountHolderName;
+        this.accountNumber = accountNumber;
+        this.balance = initialBalance;
+    }
+
+    // Deposit money
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Deposited: ₹" + amount);
+        } else {
+            System.out.println("Deposit amount must be positive.");
+        }
+    }
+
+    // Withdraw money
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            System.out.println("Withdrew: ₹" + amount);
+        } else if (amount > balance) {
+            System.out.println("Insufficient balance.");
+        } else {
+            System.out.println("Withdrawal amount must be positive.");
+        }
+    }
+
+    // Check balance
+    public double getBalance() {
+        return balance;
+    }
+
+    // Show account details
+    public void displayAccountInfo() {
+        System.out.println("Account Holder: " + accountHolderName);
+        System.out.println("Account Number: " + accountNumber);
+        System.out.println("Current Balance: ₹" + balance);
+    }
+
+    // Main method to test the class
+    public static void main(String[] args) {
+        BankAccount account = new BankAccount("Harshit Rathore", "1234567890", 5000);
+
+        account.displayAccountInfo();
+        account.deposit(1500);
+        account.withdraw(2000);
+        account.withdraw(6000); // will show insufficient balance
+        System.out.println("Final Balance: ₹" + account.getBalance());
+    }
+}
